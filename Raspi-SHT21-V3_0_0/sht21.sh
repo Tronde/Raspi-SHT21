@@ -3,15 +3,15 @@
 
 # Variablen  ###########################################################
 
-maxtemp=35.0
+LogInterval=600
+maxtemp=115.0			# Grenzwert ab dem eine Temperaturwarnung verschickt wird.
+email="name@example.org"	# Zieladresse für die E-Mail-Benachrichtigung.
 
 # Funktionen ###########################################################
 
-tempalarm() { echo "ALARM: Die Temperatur hat den festgelegten Grenzwert überschritten!" | mailx -s "Temperaturalarm" support@synaxon.de ; }
+tempalarm() { echo "ALARM: Die Temperatur hat den festgelegten Grenzwert überschritten!" | mailx -s "Temperaturalarm" "$email" ; }
 
 # Hauptprogramm ########################################################
-
-LogInterval=600
 
 while true
 do
@@ -29,6 +29,8 @@ do
 		if [ $(($Timestamp % $LogInterval)) -eq 0 ]
 		then
 			echo "$TimeString\t$Timestamp\t$Sht21Data" >> sht21-data.csv
+
+			temp="$(tail -n1 sht21-data.csv | awk '{print $4}')"
 			if [ $(echo "if (${temp} > ${maxtemp}) 1 else 0" | bc) -eq 1 ]
 			then
         			tempalarm
