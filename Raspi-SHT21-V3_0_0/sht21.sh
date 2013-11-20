@@ -1,4 +1,11 @@
 #!/bin/sh
+# Autor: Joerg Kastning
+
+# Funktionen ###########################################################
+
+tempalarm() { echo "ALARM: Die Temperatur hat den festgelegten Grenzwert überschritten!" | mailx -s "Temperaturalarm" support@synaxon.de ; }
+
+# Hauptprogramm ########################################################
 
 LogInterval=600
 
