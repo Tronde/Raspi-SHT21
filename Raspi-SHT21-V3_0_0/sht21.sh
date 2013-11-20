@@ -1,6 +1,10 @@
 #!/bin/sh
 # Autor: Joerg Kastning
 
+# Variablen  ###########################################################
+
+maxtemp=35.0
+
 # Funktionen ###########################################################
 
 tempalarm() { echo "ALARM: Die Temperatur hat den festgelegten Grenzwert überschritten!" | mailx -s "Temperaturalarm" support@synaxon.de ; }
@@ -25,6 +29,10 @@ do
 		if [ $(($Timestamp % $LogInterval)) -eq 0 ]
 		then
 			echo "$TimeString\t$Timestamp\t$Sht21Data" >> sht21-data.csv
+			if [ $(echo "if (${temp} > ${maxtemp}) 1 else 0" | bc) -eq 1 ]
+			then
+        			tempalarm
+			fi
 	
 			#./sht21 C > sht21-cosm.txt
 			#./function-cosm-push.sh
