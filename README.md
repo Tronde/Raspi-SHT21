@@ -13,6 +13,6 @@ Dieses Repo fast alle Quellen zusammen, die notwenig sind, um die von emsystech 
 
 ## Ziele
 
-Ich möchte eine Lösung schaffen, die zur Überwachung von Temperatur und Luftfeuchtigkeit ein Serverräumen verwendet werden kann. Bei Erreichen definierter Grenzwerte soll eine E-Mail verschickt werden.
+Ich möchte eine Lösung schaffen, die zur Überwachung von Temperatur und Luftfeuchtigkeit in Serverräumen verwendet werden kann. Bei Erreichen definierter Grenzwerte soll eine E-Mail verschickt werden.
 
 Anschließend schaun wir mal was uns sonst noch einfällt.
