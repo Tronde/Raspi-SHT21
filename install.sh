@@ -6,7 +6,6 @@
 # Funktionen
 function check() {
   if [ $1 -gt 0 ]; then
-    !!
     echo "Uuups, hier ist was schiefgegangen"
     echo "exit $1"
     exit 1
@@ -18,7 +17,7 @@ check $?
 
 # I2C-Treiberaktivierung
 echo "i2c-dev" >>/etc/modules
-check 
+check $? 
 cp raspi-blacklist.conf /etc/modprobe.d/
 adduser pi i2c
 check $?
@@ -35,7 +34,7 @@ check $?
 check $?
 cp lighttpd.conf /etc/lighttpd/
 check $?
-cp Raspi-SHT21-V3_0_0/www/* /var/www
+cp -R Raspi-SHT21-V3_0_0/www/ /var/www/
 check $?
-ln -s ~/Raspi-SHT21-V3_0_0/sht21-data.csv sht21-data.csv
+ln -s ~/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv sht21-data.csv
 check $?

@@ -24,7 +24,7 @@ do
 	if [ $(($Timestamp % 5)) -eq 0 ]
 	then
 		Sht21Data=$(./sht21 S)
-		echo "$TimeString\t$Timestamp\t$Sht21Data"
+#		echo "$TimeString\t$Timestamp\t$Sht21Data" # Für Tests einkommentieren.
 			
 		if [ $(($Timestamp % $LogInterval)) -eq 0 ]
 		then
