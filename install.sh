@@ -16,12 +16,14 @@ apt-get update && apt-get -y install i2c-tools lighttpd php5-cgi
 check $?
 
 # I2C-Treiberaktivierung
+echo "I2C-Treiberaktivierung"
 echo "i2c-dev" >>/etc/modules
 check $? 
 cp raspi-blacklist.conf /etc/modprobe.d/
 adduser pi i2c
 check $?
 # Einrichtung des Webservers und Aktivierung von FastCGI
+echo " Einrichtung des Webservers und Aktivierung von FastCGI"
 adduser pi www-data
 check $?
 chown -R www-data:www-data /var/www
@@ -36,5 +38,8 @@ cp lighttpd.conf /etc/lighttpd/
 check $?
 cp -R Raspi-SHT21-V3_0_0/www/ /var/www/
 check $?
+echo "Erstellung von sht21-data.csv und des symbolischen Links."
+touch ~/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv
+chown pi:pi ~/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv
 ln -s ~/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv sht21-data.csv
 check $?
