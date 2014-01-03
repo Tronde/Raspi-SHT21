@@ -12,7 +12,7 @@ function check() {
   fi
 }
 # Installation der i1c-tools, lighttpd und php5-cgi
-apt-get update && apt-get -y install i2c-tools lighttpd php5-cgi
+apt-get update && apt-get -y install i2c-tools lighttpd php5-cgi bc
 check $?
 
 # I2C-Treiberaktivierung
