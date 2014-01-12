@@ -22,13 +22,10 @@ check $?
 cp raspi-blacklist.conf /etc/modprobe.d/
 adduser pi i2c
 check $?
+
 # Einrichtung des Webservers und Aktivierung von FastCGI
 echo " Einrichtung des Webservers und Aktivierung von FastCGI"
 adduser pi www-data
-check $?
-chown -R www-data:www-data /var/www
-check $?
-chmod -R 775 /var/www
 check $?
 lighty-enable-mod fastcgi
 check $?
@@ -36,10 +33,27 @@ check $?
 check $?
 cp lighttpd.conf /etc/lighttpd/
 check $?
-cp -R Raspi-SHT21-V3_0_0/www/ /var/www/
+cp -R Raspi-SHT21-V3_0_0/www /var/
 check $?
+
 echo "Erstellung von sht21-data.csv und des symbolischen Links."
-touch ~/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv
-chown pi:pi ~/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv
-ln -s ~/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv sht21-data.csv
+touch /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv
+chown pi:pi /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv
+ln -s /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv /var/www/sht21-data.csv
 check $?
+chown -R www-data:www-data /var/www
+check $?
+chmod -R 775 /var/www
+check $?
+
+# Einrichtung des logrotate scripts
+cp /home/pi/Raspi-SHT21/raspi-sht21 /etc/logrotate.d/
+check $?
+
+# Installation des raspi-sht21.sh Start-Stop-Script
+cp /home/pi/Raspi-SHT21/raspi-sht21.sh /etc/init.d/
+cd /etc/init.d
+update-rc.d raspi-sht21.sh defaults
+check $?
+cd
+exit 0
