@@ -5,11 +5,36 @@
 
 LogInterval=600
 maxtemp=115.0			# Grenzwert ab dem eine Temperaturwarnung verschickt wird.
+minhumidity=30			# Mindestwert fuer die Luftfeuchtigkeit.
+maxhumidity=40			# Maximalwert fuer die Luftfeuchtigkeit.
 email="name@example.org"	# Zieladresse für die E-Mail-Benachrichtigung.
 
 # Funktionen ###########################################################
 
-tempalarm() { echo "ALARM: Die Temperatur hat den festgelegten Grenzwert überschritten!" | mailx -s "Temperaturalarm" "$email" ; }
+tempalarm() {
+	
+	temp="$(tail -n1 sht21-data.csv | awk '{print $4}')"
+	if [ $(echo "if (${temp} > ${maxtemp}) 1 else 0" | bc) -eq 1 ]
+	then
+		echo "ALARM: Die Temperatur hat den festgelegten Grenzwert überschritten!" | mailx -s "Temperaturalarm" "$email" ;
+	fi
+}
+
+humidityalarm() {
+	# Luftfeuchtigkeit aus Datei auslesen und Variable zuweisen.
+	humidity="$(tail -n1 sht21-data.csv | awk '{print $5}')"
+
+	# Prüfung, ob Luftfeuchtigkeit innerhalb definierter Parameter liegt.
+	if [ $humidity -lt $minhumidity ]
+	then
+		echo "WARNUNG: Die Luftfeuchtigkeit ist zu hoch!" | mailx -s "WARNUNG - Luftfeuchtigkeit zu hoch!" "$email" ;
+	fi
+
+	if [ $humidity -gt $maxhumidity ]
+	then
+		echo "WARNUNG: Die Luftfeuchtigkeit ist zu niedrig!" | mailx -s "WARNUNG - Luftfeuchtigkeit zu niedrig!" "$email" ;
+	fi
+}
 
 # Hauptprogramm ########################################################
 
@@ -30,12 +55,9 @@ do
 		then
 			echo "$TimeString\t$Timestamp\t$Sht21Data" >> sht21-data.csv
 
-			temp="$(tail -n1 sht21-data.csv | awk '{print $4}')"
-			if [ $(echo "if (${temp} > ${maxtemp}) 1 else 0" | bc) -eq 1 ]
-			then
-        			tempalarm
-			fi
-	
+			tempalarm
+			humidityalarm
+
 			#./sht21 C > sht21-cosm.txt
 			#./function-cosm-push.sh
 			#./function-ftp-upload.sh

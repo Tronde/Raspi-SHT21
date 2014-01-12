@@ -43,7 +43,11 @@ case "$1" in
 	echo "Daemon raspi-sht21 stopped."
 	;;
   status)
-	status_of_proc "$DAEMON" "$NAME" && exit 0 || exit $?
+	status="$(pidof /bin/sh ./sht21.sh > /dev/null; echo $?)"
+	case "$status" in
+		0)	echo "Deamon raspi-sht21.sh is started." ;;
+		1)	echo "Deamon raspi-sht21.sh is stopped." ;;
+	esac
 	;;
   #reload|force-reload)
 	#
@@ -56,7 +60,7 @@ case "$1" in
 	#;;
   *)
 	#echo "Usage: $SCRIPTNAME {start|stop|restart|reload|force-reload}" >&2
-	echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
+	echo "Usage: $SCRIPTNAME {start|stop|status}" >&2
 	exit 3
 	;;
 esac
