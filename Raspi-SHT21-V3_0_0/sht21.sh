@@ -4,10 +4,10 @@
 # Variablen  ###########################################################
 
 LogInterval=600
-maxtemp=115.0			# Grenzwert ab dem eine Temperaturwarnung verschickt wird.
-minhumidity=30			# Mindestwert fuer die Luftfeuchtigkeit.
-maxhumidity=40			# Maximalwert fuer die Luftfeuchtigkeit.
-email="name@example.org"	# Zieladresse für die E-Mail-Benachrichtigung.
+maxtemp=25.0			# Grenzwert ab dem eine Temperaturwarnung verschickt wird.
+minhumidity=28			# Mindestwert fuer die Luftfeuchtigkeit.
+maxhumidity=50			# Maximalwert fuer die Luftfeuchtigkeit.
+email="support@synaxon.de"	# Zieladresse für die E-Mail-Benachrichtigung.
 
 # Funktionen ###########################################################
 
@@ -32,7 +32,7 @@ humidityalarm() {
 
 	if [ $humidity -gt $maxhumidity ]
 	then
-		echo "WARNUNG: Die Luftfeuchtigkeit ist zu niedrig!" | mailx -s "WARNUNG - Luftfeuchtigkeit zu niedrig!" "$email" ;
+		echo "WARNUNG: Die Luftfeuchtigkeit ist zu niedrig!" | mailx -s "WARNUNG - Luftfeuchtigkeit zu hoch!" "$email" ;
 	fi
 }
 
