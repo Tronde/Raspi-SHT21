@@ -19,6 +19,7 @@ check $?
 echo "I2C-Treiberaktivierung"
 echo "i2c-dev" >>/etc/modules
 check $? 
+cp /etc/modprobe.d/raspi-blacklist.conf /etc/modprobe.d/raspi-blacklist.conf.bak
 cp raspi-blacklist.conf /etc/modprobe.d/
 adduser pi i2c
 check $?
@@ -55,5 +56,8 @@ cp /home/pi/Raspi-SHT21/raspi-sht21.sh /etc/init.d/
 cd /etc/init.d
 update-rc.d raspi-sht21.sh defaults
 check $?
+
+# lighttpd zum Abschluss neustarten
+service lighttpd restart
 cd
 exit 0
