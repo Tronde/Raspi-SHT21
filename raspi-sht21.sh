@@ -49,6 +49,19 @@ case "$1" in
 		1)	echo "Deamon raspi-sht21.sh is stopped." ;;
 	esac
 	;;
+  restart)
+	echo "Stopping raspi-sht21..." 
+	killall sht21.sh
+	echo "Daemon raspi-sht21 stopped."
+	echo "Starting raspi-sht21 daemon..."
+	cd /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/
+	if  ./start-sht21-service.sh; then
+		echo "Starting raspi-sht21 Daemon [OK]"
+	else
+		echo "ERROR: raspi-sht21 daemon not started." >&2
+		exit 1
+	fi
+	;;
   #reload|force-reload)
 	#
 	# If do_reload() is not implemented then leave this commented out
@@ -60,7 +73,7 @@ case "$1" in
 	#;;
   *)
 	#echo "Usage: $SCRIPTNAME {start|stop|restart|reload|force-reload}" >&2
-	echo "Usage: $SCRIPTNAME {start|stop|status}" >&2
+	echo "Usage: $SCRIPTNAME {start|stop|status|restart}" >&2
 	exit 3
 	;;
 esac

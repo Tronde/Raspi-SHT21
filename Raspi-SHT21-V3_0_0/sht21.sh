@@ -1,13 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 # Autor: Joerg Kastning
 
 # Variablen  ###########################################################
 
-LogInterval=600
-maxtemp=25.0			# Grenzwert ab dem eine Temperaturwarnung verschickt wird.
-minhumidity=28			# Mindestwert fuer die Luftfeuchtigkeit.
-maxhumidity=50			# Maximalwert fuer die Luftfeuchtigkeit.
-email="support@synaxon.de"	# Zieladresse für die E-Mail-Benachrichtigung.
+source ./sht21.conf
+
+#LogInterval=600
+#maxtemp=25.0			# Grenzwert ab dem eine Temperaturwarnung verschickt wird.
+#minhumidity=28			# Mindestwert fuer die Luftfeuchtigkeit.
+#maxhumidity=50			# Maximalwert fuer die Luftfeuchtigkeit.
+#email="support@synaxon.de"	# Zieladresse für die E-Mail-Benachrichtigung.
 
 # Funktionen ###########################################################
 
@@ -27,12 +29,12 @@ humidityalarm() {
 	# Prüfung, ob Luftfeuchtigkeit innerhalb definierter Parameter liegt.
 	if [ $humidity -lt $minhumidity ]
 	then
-		echo "WARNUNG: Die Luftfeuchtigkeit ist zu hoch!" | mailx -s "WARNUNG - Luftfeuchtigkeit zu hoch!" "$email" ;
+		echo "WARNUNG: Die Luftfeuchtigkeit ist zu niedrig!" | mailx -s "WARNUNG - Luftfeuchtigkeit zu niedrig!" "$email" ;
 	fi
 
 	if [ $humidity -gt $maxhumidity ]
 	then
-		echo "WARNUNG: Die Luftfeuchtigkeit ist zu niedrig!" | mailx -s "WARNUNG - Luftfeuchtigkeit zu hoch!" "$email" ;
+		echo "WARNUNG: Die Luftfeuchtigkeit ist zu hoch!" | mailx -s "WARNUNG - Luftfeuchtigkeit zu hoch!" "$email" ;
 	fi
 }
 
@@ -49,11 +51,11 @@ do
 	if [ $(($Timestamp % 5)) -eq 0 ]
 	then
 		Sht21Data=$(./sht21 S)
-#		echo "$TimeString\t$Timestamp\t$Sht21Data" # Für Tests einkommentieren.
+#		echo -e "$TimeString\t$Timestamp\t$Sht21Data" # Für Tests einkommentieren.
 			
 		if [ $(($Timestamp % $LogInterval)) -eq 0 ]
 		then
-			echo "$TimeString\t$Timestamp\t$Sht21Data" >> sht21-data.csv
+			echo -e "$TimeString\t$Timestamp\t$Sht21Data" >> sht21-data.csv
 
 			tempalarm
 			humidityalarm

@@ -39,6 +39,7 @@ check $?
 
 echo "Erstellung von sht21-data.csv und des symbolischen Links."
 touch /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv
+touch /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21.conf
 chown pi:pi /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv
 ln -s /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv /var/www/sht21-data.csv
 check $?
