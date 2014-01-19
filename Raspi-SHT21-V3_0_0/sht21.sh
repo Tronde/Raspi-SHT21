@@ -53,16 +53,18 @@ do
 		Sht21Data=$(./sht21 S)
 #		echo -e "$TimeString\t$Timestamp\t$Sht21Data" # Für Tests einkommentieren.
 			
-		if [ $(($Timestamp % $LogInterval)) -eq 0 ]
-		then
-			echo -e "$TimeString\t$Timestamp\t$Sht21Data" >> sht21-data.csv
+		if [ "${Sht21Data%%[[:digit:]]*}" = "" ]; then
+			if [ $(($Timestamp % $LogInterval)) -eq 0 ]
+			then
+				echo -e "$TimeString\t$Timestamp\t$Sht21Data" >> sht21-data.csv
 
-			tempalarm
-			humidityalarm
+				tempalarm
+				humidityalarm
 
-			#./sht21 C > sht21-cosm.txt
-			#./function-cosm-push.sh
-			#./function-ftp-upload.sh
+				#./sht21 C > sht21-cosm.txt
+				#./function-cosm-push.sh
+				#./function-ftp-upload.sh
+			fi
 		fi
 	fi	
 	sleep 1
