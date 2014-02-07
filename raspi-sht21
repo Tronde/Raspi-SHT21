@@ -1,9 +1,13 @@
 /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/*csv {
-	daily		# täglich
-	rotate 7	# Behalte die letzten fünf Tage
-	compress	# Komprimiere die alten Logs
-	delaycompress	# Komprimiere die Daten, nachdem sie rotiert wurden
-	missingok	# Ignoriere fehlendes Log und mach weiter
-	notifempty	# Leere Logdateien werden nicht rotiert
-	sharedscripts	# Siehe Man-Page
+	daily
+	missingok
+	notifempty
+	rotate 7
+	compress
+	delaycompress
+	sharedscripts
+	create 0644 pi pi
+ 	postrotate
+                invoke-rc.d rsyslog rotate > /dev/null
+        endscript
 }
