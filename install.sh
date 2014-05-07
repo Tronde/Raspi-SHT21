@@ -34,13 +34,13 @@ check $?
 check $?
 cp lighttpd.conf /etc/lighttpd/
 check $?
-cp -R Raspi-SHT21-V3_0_0/www /var/
+cp -R www /var/
 check $?
 
 echo "Erstellung von sht21-data.csv und des symbolischen Links."
-touch /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv
-chown pi:pi /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv
-ln -s /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/sht21-data.csv /var/www/sht21-data.csv
+touch /home/pi/Raspi-SHT21/sht21-data.csv
+chown pi:pi /home/pi/Raspi-SHT21/sht21-data.csv
+ln -s /home/pi/Raspi-SHT21/sht21-data.csv /var/www/sht21-data.csv
 check $?
 chown -R www-data:www-data /var/www
 check $?

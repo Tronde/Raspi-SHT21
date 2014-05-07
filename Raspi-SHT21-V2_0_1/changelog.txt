@@ -1,4 +1,0 @@
-V1.0.1	21.09.2012	index.php Grad-Zeichen ersetzt &deg; (Danke an Mathias Scheurer)
-V2.0.0	01.11.2012	Automatische Erkennung der Raspberry Hardware Revision
-			Frei PIN-Belegung für I2C: SI2C_SetPort(3,2);		
-V2.0.1	10.11.2012	sht21 executable was not the actual one 
