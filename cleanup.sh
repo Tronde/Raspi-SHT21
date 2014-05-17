@@ -9,6 +9,7 @@ apt-get -y --purge autoremove i2c-tools lighttpd php5-cgi bc
 
 # I2C-Treiber deaktivieren
 cp /etc/modprobe.d/raspi-blacklist.conf.bak /etc/modprobe.d/raspi-blacklist.conf
+sed '/i2c-dev/d' /etc/modules >/etc/modules.tmp && mv /etc/modules.tmp /etc/modules
 
 # raspi-sht21.sh aus den runleveln und logrotate entfernen
 update-rc.d -f raspi-sht21.sh remove
