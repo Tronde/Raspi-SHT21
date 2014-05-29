@@ -76,7 +76,7 @@
 	
 	
     <h3>Raspi-SHT21 (Temperature and Humidity with SHT21 Sensor) <a href="http://www.emsystech.de/">(www.emsystech.de)</a></h3>
-	
+	<b>Achtung:</b> Auf der X-Achse wird die Zeit in UTC+1 aufgetragen.<br />
     <div id="placeholder" style="width:900px;height:420px;"></div>
 
 	</br>

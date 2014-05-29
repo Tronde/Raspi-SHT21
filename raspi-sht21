@@ -1,5 +1,5 @@
-/home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/*csv {
-	daily
+/home/pi/Raspi-SHT21/*csv {
+	weekly
 	missingok
 	notifempty
 	rotate 7
