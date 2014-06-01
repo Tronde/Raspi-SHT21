@@ -12,8 +12,8 @@ echo "Uuups, hier ist was schiefgegangen"
 }
 
 # Aktualisierung der Paketquellen #############################
-apt-get update
-check $?
+#apt-get update # Update bis zur weiteren Verwendung deaktiviert.
+#check $?
 
 # Aktuelle Dateien in die Verzeichnisse kopieren ###################
 echo "Erstellung von sht21-data.csv und des symbolischen Links."
