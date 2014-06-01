@@ -15,4 +15,29 @@ echo "Uuups, hier ist was schiefgegangen"
 apt-get update
 check $?
 
-# Aktuelle Dateien aus dem Repository holen ###################
+# Aktuelle Dateien in die Verzeichnisse kopieren ###################
+echo "Erstellung von sht21-data.csv und des symbolischen Links."
+touch /home/pi/Raspi-SHT21/sht21-data.csv
+chown pi:pi /home/pi/Raspi-SHT21/sht21-data.csv
+rm /var/www/sht21-data.csv
+ln -s /home/pi/Raspi-SHT21/sht21-data.csv /var/www/sht21-data.csv
+check $?
+chown -R www-data:www-data /var/www
+check $?
+chmod -R 775 /var/www
+check $?
+
+# Einrichtung des logrotate scripts
+cp /home/pi/Raspi-SHT21/raspi-sht21 /etc/logrotate.d/
+check $?
+
+# Installation des raspi-sht21.sh Start-Stop-Script
+cp /home/pi/Raspi-SHT21/raspi-sht21.sh /etc/init.d/
+cd /etc/init.d
+update-rc.d raspi-sht21.sh defaults
+check $?
+
+# lighttpd zum Abschluss neustarten
+service lighttpd restart
+cd
+exit 0
