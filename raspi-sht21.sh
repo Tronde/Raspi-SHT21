@@ -26,6 +26,7 @@ DAEMON_ARGS="--options args"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
+echo $$ > $PIDFILE
 case "$1" in
   start)
 	echo "Starting raspi-sht21 daemon..."
@@ -40,10 +41,12 @@ case "$1" in
   stop)
 	echo "Stopping raspi-sht21..." 
 	killall sht21.sh
+	rm -f $PIDFILE
 	echo "Daemon raspi-sht21 stopped."
 	;;
   status)
-	status="$(pidof /bin/sh ./sht21.sh > /dev/null; echo $?)"
+	#status="$(pidof /bin/sh ./sht21.sh > /dev/null; echo $?)"
+	status="$(ps -fp $(cat $PIDFILE) > /dev/null; echo $?)"
 	case "$status" in
 		0)	echo "Deamon raspi-sht21.sh is started." ;;
 		1)	echo "Deamon raspi-sht21.sh is stopped." ;;
