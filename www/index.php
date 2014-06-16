@@ -57,7 +57,14 @@
  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="refresh" content="600" >
-    <title>Raspi-SHT21</title>
+    <title>
+	<?php 
+		$lines = file("sht21-data.csv");
+		$letzte_zeile = $lines[count($lines)-1]; 
+		$res = explode ("\t", $letzte_zeile);
+		print("T: ".$res[2]."&deg;C H: ".$res[3]."%");
+	?>
+    </title>
     <link href="layout.css" rel="stylesheet" type="text/css">
     <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
     <script language="javascript" type="text/javascript" src="js/jquery.js"></script>
