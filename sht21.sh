@@ -40,6 +40,8 @@ humidityalarm() {
 
 # Hauptprogramm ########################################################
 
+echo $$ > /var/run/raspi-sht21.pid
+
 while true
 do
 	TimeString=$(date +"%d.%m.%Y %H:%M:%S")	

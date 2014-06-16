@@ -20,13 +20,12 @@
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Data collection with the Raspi-SHT21"
-NAME=raspi-sht21.sh
+NAME=raspi-sht21
 DAEMON=/usr/sbin/$NAME
 DAEMON_ARGS="--options args"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
-echo $$ > $PIDFILE
 case "$1" in
   start)
 	echo "Starting raspi-sht21 daemon..."
@@ -41,7 +40,6 @@ case "$1" in
   stop)
 	echo "Stopping raspi-sht21..." 
 	killall sht21.sh
-	rm -f $PIDFILE
 	echo "Daemon raspi-sht21 stopped."
 	;;
   status)
