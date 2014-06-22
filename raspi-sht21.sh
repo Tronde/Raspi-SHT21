@@ -55,7 +55,7 @@ case "$1" in
 	killall sht21.sh
 	echo "Daemon raspi-sht21 stopped."
 	echo "Starting raspi-sht21 daemon..."
-	cd /home/pi/Raspi-SHT21/Raspi-SHT21-V3_0_0/
+	cd /home/pi/Raspi-SHT21
 	if  ./start-sht21-service.sh; then
 		echo "Starting raspi-sht21 Daemon [OK]"
 	else
