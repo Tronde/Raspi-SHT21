@@ -5,7 +5,7 @@ Raspi-SHT21
 
 ## Informationen über dieses Repo und die verwendete Software ##
 
-Beim Raspi-SHT21 handelt es sich um eine Sensorerweiterung für den Raspberry Pi. Die Sensorerweiterung und die dazugehörige Software stammt von [www.emsystech.de](http://www.emsystech.de). Die für die Visualisierung benötigte Javascript Libary stammt von [www.flotcharts.org](http://www.flotcharts.org)
+Beim Raspi-SHT21 handelt es sich um eine Sensorerweiterung für den Raspberry Pi. Die Sensorerweiterung und die dazugehörige Software stammt im Original von [www.emsystech.de](http://www.emsystech.de) und wird hier von mir weiterentwickelt. Die für die Visualisierung benötigte Javascript Libary stammt von [www.flotcharts.org](http://www.flotcharts.org)
 
 Dieses Repo fast alle Quellen zusammen, die notwenig sind, um die von emsystech [beschriebene Lösung](http://www.emsystech.de/raspi-sht21/ "Raspi-SHT21 Sensorerweiterung für Raspberry Pi UPDATE 2!") zu verwirklichen und weiterzuentwickeln. Der Master-Branch von [flot](https://github.com/flot/flot) wurde als Submodule in dieses Repository integriert, um bei der weiteren Entwicklung stets auf die neueste Version zurückgreifen zu können.
 
@@ -14,6 +14,14 @@ Dieses Repo fast alle Quellen zusammen, die notwenig sind, um die von emsystech 
 Ich möchte eine Lösung schaffen, die zur Überwachung von Temperatur und Luftfeuchtigkeit in Serverräumen oder ähnlichen Umgebungen wie z.B. Kühlräumen, Terrarien, etc. verwendet werden kann. Bei Erreichen definierter Grenzwerte soll eine E-Mail verschickt werden.
 
 Aktuell entwickel ich allein an diesem Projekt. Unterstützung ist jedoch herzlich willkommen.
+
+## Funktionen ##
+
+* Temperaturüberwachung (-40 - 125°C)
+* Messung der Luftfeuchtigkeit (0 - 100% relative Luftfeuchtigkeit)
+* Visualisierung der Messwerte im Browser, als Text und Verlaufsdiagramm
+* Anzeige der Messwerte direkt im Browsertab
+* E-Mail Benachrichtigung bei Überschreitung definierter Grenzwerte
 
 ## Installation ##
 
