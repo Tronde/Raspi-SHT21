@@ -52,10 +52,10 @@ print min_humidity
 print max_humidity
 
 if temperature > min_temperature and temperature < max_temperature and humidity > min_humidity and humidity < max_humidity:
-	print "OK - Temperatur: %s°C Luftfeuchtigkeit: %s Prozent." % (temperature, humidity)
+	print "OK - Temperatur: %s°C Luftfeuchtigkeit: %s%%." % (temperature, humidity)
 	sys.exit(0)
 elif temperature < min_temperature or temperature > max_temperature or humidity < min_humidity or humidity > max_humidity:
-	print "WARNUNG - Temperatur: %s°C Luftfeuchtigkeit: %s Prozent." % (temperature, humidity)
+	print "WARNUNG - Temperatur: %s°C Luftfeuchtigkeit: %s%%." % (temperature, humidity)
 	sys.exit(1)
 else:
 	print "UNKNOWN"
