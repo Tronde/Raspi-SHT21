@@ -3,6 +3,8 @@
 
 import os, sys, argparse
 
+sourcefile = '/home/pi/Raspi-SHT21/sht21-data.csv'
+
 def debug():
 	print "Die aktuelle Temperatur beträgt %2.1f°C." % temperature
 	print "Die aktuelle Luftfeuchtigkeit beträgt %d%%." % humidity
@@ -26,8 +28,17 @@ max_temperature = args.maxtemperature
 min_humidity = args.minhumidity
 max_humidity = args.maxhumidity
 
+while open(sourcefile, 'r') as csvfile:
+	reader = csv.reader(csvfile, delimiter='\t')
+	for row in reader:
+		liste.append(row)
+	temperature = float(liste[-1][3])
+	humidity = int(liste[-1][4])
+
+"""
 temperature = float(os.popen("tail -n 1 sht21-data.csv | awk '{print $4}'").readline().strip())
 humidity = int(os.popen("tail -n 1 sht21-data.csv | awk '{print $5}'").readline().strip())
+"""
 
 if args.verbose:
 	debug()
