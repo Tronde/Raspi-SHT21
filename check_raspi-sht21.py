@@ -1,9 +1,28 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+"""
+ Nagios Raspi-SHT21 Plugin. Dieses Plugin bestimmt die vom Raspi-SHT21
+ gemessene Temperatur und Luftfeuchtigkeit und vergleicht die	
+ gemessenen Werte mit den übergebenen Grenzwerten für Temperatur und
+ Luftfeuchtigkeit.
+		
+ @author : Jörg Kastning <joerg.kastning@synaxon.de>
+ @version: 17.07.2014				
+
+ Die benötigten Messwerte werden aus einer CSV-Datei eingelesen, welche
+ mit '-d' bzw. '--dir' übergeben wird.
+
+ Aus der CSV-Datei wird die jeweils letzte Zeile ausgelesen und zerlegt,
+ um die Messwerte für die Temperatur und Luftfeuchtigkeit zu extrahieren.
+"""
+ 
 import sys, argparse, csv
 
 liste = []
+lastitem = -1	# Bestimmt das letzte Element einer Liste
+tempitem = 2	# Bestimmt den Temperaturwert innerhalb der Liste
+humditem = 3	# Bestimmt den Luftfeuchtigkeitswert innerhalb der Liste
 temperature = 0
 humidity = 0
 
@@ -36,8 +55,8 @@ with open(sourcefile, 'r') as csvfile:
 	reader = csv.reader(csvfile, delimiter='\t')
 	for row in reader:
 		liste.append(row)
-	temperature = float(liste[-1][2])
-	humidity = int(liste[-1][3])
+	temperature = float(liste[lastitem][tempitem])
+	humidity = int(liste[lastitem][humditem])
 
 
 if args.verbose:
