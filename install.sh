@@ -11,7 +11,7 @@ function check() {
     exit 1
   fi
 }
-# Installation der i1c-tools, lighttpd, php5-cgi und weitere benötigte Pakete.
+# Installation der i2c-tools, lighttpd, php5-cgi und weitere benötigte Pakete.
 apt-get update && apt-get -y install i2c-tools lighttpd php5-cgi bc resolvconf
 check $?
 

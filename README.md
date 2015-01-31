@@ -67,7 +67,7 @@ LogInterval=600
 maxtemp=38.0                    # Grenzwert ab dem eine Temperaturwarnung verschickt wird.
 minhumidity=28                  # Mindestwert fuer die Luftfeuchtigkeit.
 maxhumidity=50                  # Maximalwert fuer die Luftfeuchtigkeit.
-email="tronde@my-it-brain.de"      # Zieladresse für die E-Mail-Benachrichtigung.
+email="foo.bar@example.com"      # Zieladresse für die E-Mail-Benachrichtigung.
 
 pi@raspberrypi:~/Raspi-SHT21$ cp sht21.muster sht21.conf
 pi@raspberrypi:~/Raspi-SHT21$ vim sht21.conf
