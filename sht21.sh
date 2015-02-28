@@ -6,7 +6,8 @@
 source ./sht21.conf
 
 #LogInterval=600
-#maxtemp=25.0			# Grenzwert ab dem eine Temperaturwarnung verschickt wird.
+#maxtemp=25.0			# Oberer Grenzwert ab dem eine Temperaturwarnung verschickt wird.
+#mintemp=0.0			# Unterer Grenzwert ab dem eine Temperaturwarnung verschickt wird.
 #minhumidity=28			# Mindestwert fuer die Luftfeuchtigkeit.
 #maxhumidity=50			# Maximalwert fuer die Luftfeuchtigkeit.
 #email="support@synaxon.de"	# Zieladresse für die E-Mail-Benachrichtigung.
@@ -18,7 +19,13 @@ tempalarm() {
 	temp="$(tail -n1 sht21-data.csv | awk '{print $4}')"
 	if [ $(echo "if (${temp} > ${maxtemp}) 1 else 0" | bc) -eq 1 ]
 	then
-		echo "ALARM: Die Temperatur hat den festgelegten Grenzwert überschritten!" | mailx -s "Temperaturalarm" "$email" ;
+		echo "ALARM: Die Temperatur hat den festgelegten oberen Grenzwert überschritten!" | mailx -s "Temperaturalarm" "$email" ;
+	fi
+
+	temp="$(tail -n1 sht21-data.csv | awk '{print $4}')"
+	if [ $(echo "if (${temp} < ${mintemp}) 1 else 0" | bc) -eq 1 ]
+	then
+		echo "ALARM: Die Temperatur hat den festgelegten unteren Grenzwert unterschritten!" | mailx -s "Temperaturalarm" "$email" ;
 	fi
 }
 
