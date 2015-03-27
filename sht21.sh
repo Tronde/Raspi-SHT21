@@ -5,13 +5,6 @@
 
 source ./sht21.conf
 
-#LogInterval=600
-#maxtemp=25.0			# Oberer Grenzwert ab dem eine Temperaturwarnung verschickt wird.
-#mintemp=0.0			# Unterer Grenzwert ab dem eine Temperaturwarnung verschickt wird.
-#minhumidity=28			# Mindestwert fuer die Luftfeuchtigkeit.
-#maxhumidity=50			# Maximalwert fuer die Luftfeuchtigkeit.
-#email="support@synaxon.de"	# Zieladresse für die E-Mail-Benachrichtigung.
-
 # Funktionen ###########################################################
 
 tempalarm() {

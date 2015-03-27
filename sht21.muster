@@ -5,4 +5,7 @@ maxtemp=38.0                    # Grenzwert ab dem eine Temperaturwarnung versch
 mintemp=-14.0                    # Unterer Grenzwert ab dem eine Temperaturwarnung verschickt wird.
 minhumidity=28                  # Mindestwert fuer die Luftfeuchtigkeit.
 maxhumidity=50                  # Maximalwert fuer die Luftfeuchtigkeit.
+# Unten wird die Empfänger-E-Mail-Adresse für Warnungen und Alarmierungen definiert.
+# Für mehrere Empfänger sind die Adressen einfach durch Leerzeichen getrennt anzuhängen. Bsp:
+# email="example@foo.bar example2@foo.bar"
 email="example@foo.bar"      # Zieladresse für die E-Mail-Benachrichtigung.
