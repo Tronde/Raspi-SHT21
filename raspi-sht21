@@ -5,6 +5,8 @@
 	rotate 7
 	compress
 	delaycompress
+	# mail foo@example.org
+	# mailfirst
 	sharedscripts
 	create 0644 pi pi
  	postrotate
