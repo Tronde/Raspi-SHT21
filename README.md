@@ -55,7 +55,7 @@ git clone https://github.com/Tronde/Raspi-SHT21.git
 cd Raspi-SHT21
 ```
 
-### Konfiguration ###
+### Erstkonfiguration ###
 
 Zuerst werden nun die gewünschten Grenzwerte definiert. Die dazu benötigte Datei sht21.conf kann mit Hilfe der Datei sht21.muster erstellt werden, indem die Datei kopiert und die enthaltenen Parameter angepasst werden.
 
@@ -65,10 +65,13 @@ pi@raspberrypi:~/Raspi-SHT21$ cat sht21.muster
 
 LogInterval=600
 maxtemp=38.0                    # Grenzwert ab dem eine Temperaturwarnung verschickt wird.
+mintemp=-14.0                    # Unterer Grenzwert ab dem eine Temperaturwarnung verschickt wird.
 minhumidity=28                  # Mindestwert fuer die Luftfeuchtigkeit.
 maxhumidity=50                  # Maximalwert fuer die Luftfeuchtigkeit.
-email="foo.bar@example.com"      # Zieladresse für die E-Mail-Benachrichtigung.
-
+# Unten wird die Empfänger-E-Mail-Adresse für Warnungen und Alarmierungen definiert.
+# Für mehrere Empfänger sind die Adressen einfach durch Leerzeichen getrennt anzuhängen. Bsp:
+# email="example@foo.bar example2@foo.bar"
+email="example@foo.bar"      # Zieladresse für die E-Mail-Benachrichtigung.
 pi@raspberrypi:~/Raspi-SHT21$ cp sht21.muster sht21.conf
 pi@raspberrypi:~/Raspi-SHT21$ vim sht21.conf
 ```
@@ -81,7 +84,18 @@ sudo bash ./install.sh
 
 Wer bereits einen Webserver auf seinem Pi betreibt, muss das Skript vor der Installation entsprechend anpassen, um zu verhindern, dass evtl. schon vorhandene Dateien auf dem Pi überschrieben werden.
 
-## Hinweise zur Nutzung ##
+### Programmsteuerung ###
+
+Die Messung wird durch ein Start/Stop-Skript gesteuert:
+```bash
+pi@jk-raspberrypi ~ $ sudo service raspi-sht21.sh 
+Usage: /etc/init.d/raspi-sht21.sh {start|stop|status|restart}
+pi@jk-raspberrypi ~ $
+```
+
+## Weitere Konfigurationsmöglichkeiten ##
+
+### Logrotation ###
 
 Durch das Installationsskript ''install.sh'' wird die Datei:
 ```bash
@@ -89,11 +103,35 @@ Durch das Installationsskript ''install.sh'' wird die Datei:
 ```
 erstellt. In der Standardeinstellung werden die Messwerte in der CSV-Datei wöchentlich rotiert. Dieses Verhalten kann in dieser Datei an die persönlichen vorlieben angepasst werden. Weitere Informationen zu logrotate findet man im Artikel [Logdateien](http://wiki.ubuntuusers.de/Logdateien?highlight=logrotate#Logrotate), im Ubuntuusers Wiki.
 
-Die Messung wird durch ein Start/Stop-Skript gesteuert:
+**/etc/logrotate.d/raspi-sht21:**
 ```bash
-pi@jk-raspberrypi ~ $ sudo service raspi-sht21.sh 
-Usage: /etc/init.d/raspi-sht21.sh {start|stop|status|restart}
-pi@jk-raspberrypi ~ $
+/home/pi/Raspi-SHT21/*csv {
+        weekly
+        missingok
+        notifempty
+        rotate 7
+        compress
+        delaycompress
+        # mail foo@example.org
+        # mailfirst
+        sharedscripts
+        create 0644 pi pi
+        postrotate
+                invoke-rc.d rsyslog rotate > /dev/null
+        endscript
+}
+```
+
+Man kann sich das jeweils letzte Log automatisch per E-Mail senden lassen. Dazu ist das Kommentarzeichen der beiden Zeilen
+```bash
+# mail foo@example.org
+# mailfirst
+```
+zu entfernen und eine Empfänger-E-Mail-Adresse anzugeben.
+
+Eine weitere Möglichkeit sich die Logs per E-Mail zusenden zu lassen besteht in der Einrichgung eines Cronjobs. Dazu kann folgender Befehl in der crontab genutzt werden:
+```bash
+mailx -s "Betreff" -a /pfad/zur/logdatei.csv.1 email@example.org
 ```
 
 Für den E-Mailversand bei Über- bzw. Unterschreitung der definierten Grenzwerte, muss auf dem Pi ein Postfix installiert sein. Eine Beispielkonfiguration findet man auf [My-IT-Brain](http://www.my-it-brain.de) im Artikel [Postfix mit Gmail als Smarthost](http://www.my-it-brain.de/wordpress/postfix-mit-gmail-als-smarthost/).
