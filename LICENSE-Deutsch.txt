@@ -5,9 +5,9 @@ neueren Version dieser Lizenz lizensiert.
 Das Copyright für die Software in diesem Repository liegt bei den folgenden
 Personen:
 
-		(c) 2012, Martin Steppuhn, Emsystech Engineering, info@emsystech.de
+	(c) 2012, Martin Steppuhn, Emsystech Engineering, info@emsystech.de
         (c) 2007-2014, IOLA and Ole Laursen
-        (c) 2014, Joerg Kastning, tronde@my-it-brain.de, www.my-it-brain.de
+        (c) 2014-2016, Joerg Kastning, tronde@my-it-brain.de, www.my-it-brain.de
 
  Deutsche Übersetzung der Version 3, 29. Juni 2007
 
