@@ -60,6 +60,8 @@ do
 			then
 				echo -e "$TimeString\t$Timestamp\t$Sht21Data" >> sht21-data.csv
 
+                python3 ./calc_avgminmax.py
+
 				tempalarm
 				humidityalarm
 
