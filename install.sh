@@ -68,6 +68,12 @@ echo "Erstellung von sht21-data.csv und des symbolischen Links."
 touch /home/pi/Raspi-SHT21/sht21-data.csv
 chown pi:pi /home/pi/Raspi-SHT21/sht21-data.csv
 ln -s /home/pi/Raspi-SHT21/sht21-data.csv /var/www/sht21-data.csv
+touch /home/pi/Raspi-SHT21/statistic_data.csv
+chown pi:pi /home/pi/Raspi-SHT21/statistic_data.csv
+ln -s /home/pi/Raspi-SHT21/statistic_data.csv /var/www/statistic_data.csv
+touch /home/pi/Raspi-SHT21/esp8266_data.csv
+chown pi:pi /home/pi/Raspi-SHT21/esp8266_data.csv
+ln -s /home/pi/Raspi-SHT21/esp8266_data.csv /var/www/esp8266_data.csv
 check $?
 chown -R www-data:www-data /var/www
 check $?

@@ -22,8 +22,10 @@ rm /etc/init.d/raspi-sht21.sh
 rm /etc/logrotate.d/raspi-sht21
 
 # lighttpd Verzeichnis aufraeumen
-rm -rf /var/www/index.php /var/www/js /var/www/layout.css /var/www/sht21-data.csv
+rm -rf /var/www/index.php /var/www/js /var/www/layout.css /var/www/sht21-data.csv /var/www/esp8266_data.csv /var/www/statistic_data.csv
 rm /home/pi/Raspi-SHT21/sht21-data.csv
+rm /home/pi/Raspi-SHT21/esp8266_data.csv
+rm /home/pi/Raspi-SHT21/statistic_data.csv
 
 # Benutzer aufraeumen
 deluser pi www-data
