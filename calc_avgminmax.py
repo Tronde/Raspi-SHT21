@@ -73,10 +73,10 @@ if args.verbose:
     debug()
 
 def writestatsincsv(temp_avg,min_t,max_t,humid_avg,min_h,max_h):
-    row = temp_avg + "," + min_t + "," + max_t + "," + humid_avg + "," + min_h + "," + max_h + "\n"
+    row = str("%2.1f" % temp_avg) + "," + min_t[0] + "," + min_t[tempitem] + "," + max_t[0] + "," + max_t[tempitem] + "," + str("%2.1f" % humid_avg) + "," + min_h[0] + "," + min_h[humiditem] + "," + max_h[0] + "," + max_h[humiditem] + "\n"
     f = open('statistic_data.csv', 'w')
     f.write(row)
     f.close()
-writestatsincsv(str("%2.1f" % temp_avg),str(min_t),str(max_t),str("%d" % humid_avg),str(min_h),str(max_h))
+writestatsincsv(temp_avg,min_t,max_t,humid_avg,min_h,max_h)
 
 sys.exit(0)
