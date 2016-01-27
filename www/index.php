@@ -80,7 +80,7 @@
 	    $res = explode ("\t", $letzte_zeile);
         $stats = implode(",",file("statistic_data.csv"));
         $stats_res = explode (",", $stats);
-		print("<h2>". $res[0]. "<br />   Temperatur: ".$res[2]."&deg;C</h2><br />  Durchschnittliche Temperatur: ".$stats_res[0]."&deg;C<br />   Minimum: ".$stats_res[1]."&deg;C<br />   Maximum: ".$stats_res[2]."&deg;C<br />   <h2>Luftfeuchtigkeit: ".$res[3]."%</h2><br />   Durchschnittliche Luftfeuchtigkeit: ".$stats_res[3]."%<br />   Minimum: ".$stats_res[4]."%<br />   Maximum: ".$stats_res[5]."%<br />");
+		print("<h2>". $res[0]. "<br />   Temperatur: ".$res[2]."&deg;C</h2><br />  Durchschnittliche Temperatur: ".$stats_res[0]."&deg;C<br />   Minimum: ".$stats_res[2]."&deg;C (".$stats_res[1].")<br />   Maximum: ".$stats_res[4]."&deg;C (".$stats_res[3].")<br />   <h2>Luftfeuchtigkeit: ".$res[3]."%</h2><br />   Durchschnittliche Luftfeuchtigkeit: ".$stats_res[5]."%<br />   Minimum: ".$stats_res[7]."% (".$stats_res[6].")<br />   Maximum: ".$stats_res[9]."% (".$stats_res[8].")<br />");
 	?>
 	
 	
