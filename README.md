@@ -3,6 +3,8 @@ Raspi-SHT21
 
 Überwachung von Temperatur und Luftfeuchtigkeit mit dem Raspberry Pi und dem SHT-21 Sensor.
 
+*If you need information on how to use this software in English, please feel free to ask. I will provide english documentation on demand.*
+
 ## Informationen über dieses Repo und die verwendete Software ##
 
 Beim Raspi-SHT21 handelt es sich um eine Sensorerweiterung für den Raspberry Pi. Die Sensorerweiterung und die dazugehörige Software stammt im Original von [www.emsystech.de](http://www.emsystech.de) und wird hier von mir weiterentwickelt.
