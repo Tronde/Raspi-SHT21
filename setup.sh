@@ -5,7 +5,7 @@
 # License: MIT
 #
 # Usage: setup.sh [OPTION]
-# Where OPTION=--uninstall
+# Where OPTION=--uninstall|--update
 
 if [ $UID -ne 0 ]; then
 	echo
@@ -26,6 +26,12 @@ WEBROOT="/var/www/html/"
 if [ "$1" = "--uninstall" -o "$1" = "-uninstall" -o "$1" = "uninstall" ]; then
   apt -y remove ${PACKAGE_LIST}
   rm -rf ${WEBROOT}chart-day.png ${WEBROOT}chart-week.png ${WEBROOT}data.json ${WEBROOT}index.php
+  exit
+fi
+
+if [ "$1" = "--update" -o "$1" = "-update" -o "$1" = "update" ]; then
+  echo "Place files in webroot"
+  cp -rp www/* ${WEBROOT}
   exit
 fi
 
