@@ -12,6 +12,8 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 # THE POSSIBILITY OF SUCH DAMAGE.
 
+# Modified by Joerg Kastning
+
 import sht21
 import time
 import datetime
@@ -32,9 +34,9 @@ import rpi_cpu
 # Use "crontab -e" and append the following line to call sht21_job.sh every 10 minutes:
 # "*/10 * * * * /home/pi/sht21/sht21_job.sh"
 
-rrd_file = "data.rrd"     # Database file
-www_path = "/home/pi/Raspi-SHT21/www"  # Output (Chart)
-json_file = "data.json"     # Output (JSON-Data)
+rrd_file = "sht21.rrd"     # Database file
+www_path = "/var/www/html"  # Output (Chart)
+json_file = "sht21.json"     # Output (JSON-Data)
 
 def rrd_init():
     """Check if RRD Database ist available, if not, create it"""

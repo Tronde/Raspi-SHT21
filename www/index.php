@@ -11,7 +11,7 @@ body    {font-family:verdana}
 <?php
 
 
-$json = file_get_contents("data.json");
+$json = file_get_contents("sht21.json");
 $data = json_decode($json,TRUE);
 
 //print_r($data);
