@@ -10,19 +10,13 @@
  @author : Jörg Kastning <joerg.kastning@synaxon.de>
  @version: 17.07.2014				
 
- Die benötigten Messwerte werden aus einer CSV-Datei eingelesen, welche
- mit '-d' bzw. '--dir' übergeben wird.
-
- Aus der CSV-Datei wird die jeweils letzte Zeile ausgelesen und zerlegt,
- um die Messwerte für die Temperatur und Luftfeuchtigkeit zu extrahieren.
+ Die benötigten Messwerte werden aus einer JSON-Datei eingelesen, welche
+ sich im WEBROOT des Raspi-SHT21 befindet.
 """
  
-import sys, argparse, csv
+import sys, argparse, json
 
-liste = []
-lastitem = -1	# Bestimmt das letzte Element einer Liste
-tempitem = 2	# Bestimmt den Temperaturwert innerhalb der Liste
-humditem = 3	# Bestimmt den Luftfeuchtigkeitswert innerhalb der Liste
+WEBROOT="/var/www/html/sht21.json"
 temperature = 0
 humidity = 0
 
@@ -36,7 +30,7 @@ def debug():
 
 parser = argparse.ArgumentParser(description=" Nagios Raspi-SHT21 Plugin. Dieses Plugin bestimmt die vom Raspi-SHT21 gemessene Temperatur und Luftfeuchtigkeit und vergleicht die gemessenen Werte mit den übergebenen Grenzwerten für Temperatur und Luftfeuchtigkeit.")
 
-parser.add_argument("-d", "--dir", dest="directory", default="/home/pi/Raspi-SHT21/sht21-data.csv", help="Pfad zur CSV-Datei")
+parser.add_argument("-d", "--dir", dest="directory", default="/var/www/html/sht21.json", help="Pfad zur JSON-Datei")
 parser.add_argument("-t", "--min-temperature", dest="mintemperature", required=True, type=float, help="Untere Temperaturgrenze")
 parser.add_argument("-T", "--max-temperature", dest="maxtemperature", required=True, type=float, help="Obere Temperaturgrenze")
 parser.add_argument("-l", "--min-humidity", dest="minhumidity", required=True, type=int, help="Untere Grenze der Luftfeuchtigkeit")
@@ -51,12 +45,14 @@ max_temperature = args.maxtemperature
 min_humidity = args.minhumidity
 max_humidity = args.maxhumidity
 
-with open(sourcefile, 'r') as csvfile:
-	reader = csv.reader(csvfile, delimiter='\t')
-	for row in reader:
-		liste.append(row)
-	temperature = float(liste[lastitem][tempitem])
-	humidity = int(liste[lastitem][humditem])
+try:
+    with open(WEBROOT, 'r') as f:
+        sht21_data = json.load(f)
+except:
+    print("Error: Could not open file sht21.json for reading")
+
+temperature = sht21_data['temp']
+humidity = sht21_data['humidity']
 
 
 if args.verbose:

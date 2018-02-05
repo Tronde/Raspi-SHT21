@@ -5,6 +5,7 @@
 *.DS_Store
 .*.swp
 *.out
+__pycache__/
 
 # IDE files to ignore (Netbeans, Eclipse)
 nbproject/private/
