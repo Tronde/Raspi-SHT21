@@ -90,4 +90,12 @@ Anschließend wird die Software und die benötigten Pakete mit Hilfe des Install
 sudo bash ./setup.sh
 ```
 
+Das Setup-Skript prüft zuerst, ob es über die benötigten Benutzerrechte für die Installation verfügt. Anschließend werden die benötigten Pakete installiert:
+
+```bash
+PACKAGE_LIST="lighttpd spawn-fcgi libdbi1 libfam0 php-cgi php-readline php-cli rrdtool librrd8 libterm-readkey-perl libterm-readline-perl-perl python3-rpi.gpio i2c-tools"
+```
+
+Die für die Anzeige im Webbrowser benötigten Dateien werden direkt in das Webroot des LIGHTTPD unter `/var/www/html` kopiert. Der Pfad der Pfad kann über die Variable `WEBROOT` im Skript `setup.sh` angepasst werden.
+
 Wer bereits einen Webserver auf seinem Pi betreibt, muss das Skript vor der Installation entsprechend anpassen, um zu verhindern, dass evtl. schon vorhandene Dateien auf dem Pi überschrieben werden.
