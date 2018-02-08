@@ -31,6 +31,30 @@
 #	$data = fopen("esp8266_data.csv","a");
 #	fwrite($data, $logentry);
 #	fclose($data);
+  $webroot="/var/www/html";
+  $filename="$name.html";
+  $filecontentstart="<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'><html><head><title>$filename</title></head><body>";
+  $filecontentdend='</body></html>';
+
+  // Sichergehen, dass Datei existiert und beschreibbar ist
+  if (is_writable($webroot)) {
+    if (!$handle = fopen($filename, "w")) {
+      print "Kann die Datei $filename nicht oeffnen";
+      exit;
+    }
+
+    if (!fwrite($handle, $filecontentstart)) {
+      print "Kann nicht in die Datei schreiben";
+      exit;
+    }
+    fwrite($handle, $logentry);
+    fwrite($handle, $filecontendend);
+    print "Fertig, in die Datei $filename wurde $filecontentstart geschrieben";
+
+    fclose($handle);
+  } else {
+      print "Die Datei $filename ist nicht schreibbar.";
+  }
  ?>
  </body>
 </html>
