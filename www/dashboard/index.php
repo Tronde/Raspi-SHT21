@@ -35,7 +35,7 @@
     $path="$WEBROOT/$card";
     $json = file_get_contents($path);
     $data = json_decode($json,TRUE);
-    print("T: ".$data['temp']." &deg;C H: ".$data['humidity']." %");
+    print("<b>T: ".$data['temp']." &deg;C<br /> H: ".$data['humidity']." %</b>");
     print("</p>");
     print("</div>");
     print("</a>");
