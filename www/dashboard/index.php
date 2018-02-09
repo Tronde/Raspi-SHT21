@@ -16,6 +16,31 @@
 </head>
 <body class="container">
 <div class="row">
+  <?php
+  $WEBROOT = "/var/www/html";
+  $files = scandir($WEBROOT);
+  $json_files = array();
+
+  foreach ($files as $file) {
+    if (preg_match('/.*\.json/',$file)) { 
+      array_push($json_files,$file);
+    }
+  }
+
+  foreach ($json_files as $card) {
+    print("<a href=\"http://<Enter-URL-here>\" class=\"col-xs-12 col-sm-3 col-md-2 col    -lg-2\">");
+    print("<div class=\"card\">");
+    print("<b>$card</b>");
+    print("<p>");
+    $path="$WEBROOT/$card";
+    $json = file_get_contents($path);
+    $data = json_decode($json,TRUE);
+    print("T: ".$data['temp']." &deg;C H: ".$data['humidity']." %");
+    print("</p>");
+    print("</div>");
+    print("</a>");
+  }
+  ?>
     <a href="http://<Enter-URL-here>" class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
         <div class="card">
             <b>Raspi-SHT21</b>
