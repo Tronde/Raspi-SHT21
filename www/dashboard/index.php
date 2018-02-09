@@ -41,32 +41,6 @@
     print("</a>");
   }
   ?>
-    <a href="http://<Enter-URL-here>" class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
-        <div class="card">
-            <b>Raspi-SHT21</b>
-            <p>
-                <?php
-                $lines = file("http://localhost/sht21-data.csv");
-                $letzte_zeile = $lines[count($lines)-1];
-                $res = explode ("\t", $letzte_zeile);
-                print($res[0]. "<br />   Temperatur: ".$res[2]."&deg;C<br />   Luftfeuchtigkeit: ".$res[3]." %");
-                ?>
-            </p>
-        </div>
-    </a>
-    <a href="http://<Enter-URL-here>" class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
-        <div class="card">
-            <b>Sensor Name</b>
-            <p>
-                <?php
-                $lines = file("http://localhost/esp8266_data.csv");
-                $letzte_zeile = $lines[count($lines)-1];
-                $res = explode (" ", $letzte_zeile);
-                print($res[0]. "<br />   Temperatur: ".$res[2]."&deg;C<br />   Luftfeuchtigkeit: ".$res[3]." %");
-                ?>
-            </p>
-        </div>
-    </a>
 </div>
 
 <!-- Javascript Libraries -->
