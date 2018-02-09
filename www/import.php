@@ -55,11 +55,6 @@
   echo("temp: $temp\n"); 
   echo("humd: $humd\n"); 
 
-	print("<h1>". "Datenimport von ESP8266" ."</h1>");
-	print("<h2>". "Sensor-ID: ".$name."</h2>");
-	print("<h3>". "Aktuelle  Temperatur: ".$temp."&deg;C<br />   Luftfeuchtigkeit: ".$humd."%</h3>");
-  print("<h3>". "Taskname: ".$taskname." ID: ".$id."</h3>");
-
 #	$data = fopen("esp8266_data.csv","a");
 #	fwrite($data, $logentry);
 #	fclose($data);
