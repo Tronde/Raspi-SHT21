@@ -30,7 +30,7 @@
   foreach ($json_files as $card) {
     print("<a href=\"http://<Enter-URL-here>\" class=\"col-xs-12 col-sm-3 col-md-2 col    -lg-2\">");
     print("<div class=\"card\">");
-    print("<b>$card</b>");
+    print("<b>".basename($card, ".json")."</b>");
     print("<p>");
     $path="$WEBROOT/$card";
     $json = file_get_contents($path);
