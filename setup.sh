@@ -21,17 +21,17 @@ fi
 unset WWWROOT
 unset PACKAGE_LIST
 PACKAGE_LIST="lighttpd spawn-fcgi libdbi1 libfam0 php-cgi php-readline php-cli rrdtool librrd8 libterm-readkey-perl libterm-readline-perl-perl python3-rpi.gpio i2c-tools"
-WEBROOT="/var/www/html/"
+WEBROOT="/var/www/html"
 
 if [ "$1" = "--uninstall" -o "$1" = "-uninstall" -o "$1" = "uninstall" ]; then
   apt -y remove ${PACKAGE_LIST}
-  rm -rf ${WEBROOT}chart-day.png ${WEBROOT}chart-week.png ${WEBROOT}data.json ${WEBROOT}index.php
+  rm -rf ${WEBROOT}/chart-day.png ${WEBROOT}/chart-week.png ${WEBROOT}/*.json ${WEBROOT}/index.php ${WEBROOT}/import.php ${WEBROOT}/dashboard
   exit
 fi
 
 if [ "$1" = "--update" -o "$1" = "-update" -o "$1" = "update" ]; then
   echo "Place files in webroot"
-  cp -rp www/* ${WEBROOT}
+  cp -rpv www/* ${WEBROOT}
   exit
 fi
 
@@ -122,7 +122,7 @@ lighty-enable-mod fastcgi fastcgi-php
 echo "Reload lighttpd"
 systemctl force-reload lighttpd
 echo "Place files in webroot"
-cp -rp www/* ${WEBROOT}
+cp -rpv www/* ${WEBROOT}
 
 echo "====================="
 echo "Installation finished"
