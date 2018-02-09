@@ -10,11 +10,42 @@
 
  <body>
  <?php
-  $name=$_POST["sysname"];
-  $taskname=$_POST["taskname"];
-	$id=$_POST["id"];
-	$temp=$_POST["Temperature"];
-	$humd=$_POST["Humidity"];
+  $textmuster='/^[^\.\/\\\\]+$/';
+  if (preg_match($textmuster,$_POST["sysname"])) { 
+    $name=$_POST["sysname"];
+  } else {
+    print("Der Systemname enthaelt ungueltige Zeichen.");
+    exit;
+  }
+
+  if (preg_match($textmuster,$_POST["taskname"])) { 
+    $taskname=$_POST["taskname"];
+  } else {
+    print("Der Taskname enthaelt ungueltige Zeichen.");
+    exit;
+  }
+
+  if (is_numeric($_POST["id"])) {
+	  $id=$_POST["id"];
+  } else {
+    print("Die ID enthaelt untueltige Zeichen.");
+    exit;
+  }
+
+  if (is_numeric($_POST["Temperature"])) {
+	  $temp=$_POST["Temperature"];
+  } else {
+    print("Die ID enthaelt untueltige Zeichen.");
+    exit;
+  }
+
+  if (is_numeric($_POST["Humidity"])) {
+	  $humd=$_POST["Humidity"];
+  } else {
+    print("Die ID enthaelt untueltige Zeichen.");
+    exit;
+  }
+
 	$logentry = date('Y-m-d'). "T" . date('H:i:s', time()) . " " . $name . " " .  $temp . " " . $humd . "\n";
   $data = array('time' => date('Y-m-d'). "T" . date('H:i:s', time()), 'temp' => $temp, 'humidity' => $humd);
 
