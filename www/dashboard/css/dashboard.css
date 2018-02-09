@@ -1,0 +1,13 @@
+.WARNING {
+     background-color: #ffa500;
+ }
+
+.CRITICAL {
+    background-color: red;
+}
+
+body {
+    height: 80px;
+    font-size: 26px;
+    font-weight: bold;
+}
