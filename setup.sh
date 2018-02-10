@@ -123,6 +123,8 @@ echo "Reload lighttpd"
 systemctl force-reload lighttpd
 echo "Place files in webroot"
 cp -rpv www/* ${WEBROOT}
+echo "Set chgrp -R www-data on ${WEBROOT}"
+chgrp -R www-data ${WEBROOT}
 
 echo "====================="
 echo "Installation finished"
