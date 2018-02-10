@@ -28,7 +28,7 @@
   }
 
   foreach ($json_files as $card) {
-    print("<a href=\"http://<Enter-URL-here>\" class=\"col-xs-12 col-sm-3 col-md-2 col    -lg-2\">");
+//    print("<a href=\"http://<Enter-URL-here>\" class=\"col-xs-12 col-sm-3 col-md-2 col    -lg-2\">");
     print("<div class=\"card\">");
     print("<b>".basename($card, ".json")."</b>");
     print("<p>");
@@ -38,7 +38,7 @@
     print("<b>T: ".$data['temp']." &deg;C<br /> H: ".$data['humidity']." %</b>");
     print("</p>");
     print("</div>");
-    print("</a>");
+//    print("</a>");
   }
   ?>
 </div>
