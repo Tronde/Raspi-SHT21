@@ -46,7 +46,6 @@
     exit;
   }
 
-	$logentry = date('Y-m-d'). "T" . date('H:i:s', time()) . " " . $name . " " .  $temp . " " . $humd . "\n";
   $data = array('time' => date('Y-m-d'). "T" . date('H:i:s', time()), 'temp' => $temp, 'humidity' => $humd);
 
   echo("name: $name\n"); 
@@ -55,9 +54,6 @@
   echo("temp: $temp\n"); 
   echo("humd: $humd\n"); 
 
-#	$data = fopen("esp8266_data.csv","a");
-#	fwrite($data, $logentry);
-#	fclose($data);
   $webroot="/var/www/html";
   $filename="$name.json";
 
