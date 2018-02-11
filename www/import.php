@@ -10,7 +10,7 @@
 
  <body>
  <?php
-  $textmuster='/^[^\.\/\\\\]+$/';
+  $textmuster='/^[^\.\/\\\\ ]+$/';
   if (preg_match($textmuster,$_POST["sysname"])) { 
     $name=$_POST["sysname"];
   } else {
