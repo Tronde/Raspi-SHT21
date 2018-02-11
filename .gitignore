@@ -6,6 +6,7 @@
 .*.swp
 *.out
 __pycache__/
+sht21.rrd
 
 # IDE files to ignore (Netbeans, Eclipse)
 nbproject/private/

@@ -1,0 +1,45 @@
+body {
+    background-color: black;
+}
+
+.row a {
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.card {
+    padding: 10px;
+    border: 1px solid white;
+    height: 200px;
+    width: 200px;
+    color: white;
+}
+
+.card:hover {
+    opacity: 0.8;
+}
+
+.card b {
+    font-size: 24px;
+}
+
+.card p {
+    padding-top: 5px;
+    font-size: 13px;
+}
+
+.green {
+    background-color: #96c438;
+}
+
+.purple {
+    background-color: #f14b97;
+}
+
+.blue {
+    background-color: #34abe8;
+}
+
+.orange {
+    background-color: #f46526;
+}
