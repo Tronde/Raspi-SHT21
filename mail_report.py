@@ -9,7 +9,7 @@
 # Author: Joerg Kastning
 # License: MIT
 
-import ConfigParser
+import configparser
 import json
 import smtplib
 from email.mime.text import MIMEText

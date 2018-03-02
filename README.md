@@ -37,7 +37,7 @@ Im folgenden findet ihr eine kleine Installationsanleitung für den Raspi-SHT21.
 ### Voraussetzungen ###
 
 * Raspberry Pi, auf dem Raspbian Stretch läuft
-* Das [SHT21 Breakout Board](http://www.emsystech.de/produkt/sht21-breakout-board/)
+* Das [SHT21 Breakout Board](http://www.emsystech.de/produkte/feuchtigkeitssensor-sht21/)
 
 ### Installation aus Archivdatei ###
 
