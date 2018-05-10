@@ -31,7 +31,7 @@ fi
 
 if [ "$1" = "--update" -o "$1" = "-update" -o "$1" = "update" ]; then
   echo "Place files in webroot"
-  cp -rpv /www/* ${WEBROOT}
+  cp -rpv ./www/* ${WEBROOT}
   exit
 fi
 
@@ -122,7 +122,7 @@ lighty-enable-mod fastcgi fastcgi-php
 echo "Reload lighttpd"
 systemctl force-reload lighttpd
 echo "Place files in webroot"
-cp -rpv /www/* ${WEBROOT}
+cp -rpv ./www/* ${WEBROOT}
 echo "Set chgrp -R www-data on ${WEBROOT}"
 chgrp -R www-data ${WEBROOT}
 
