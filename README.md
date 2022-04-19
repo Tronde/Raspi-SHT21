@@ -1,6 +1,8 @@
 Raspi-SHT21
 ===========
 
+**2022-04-19:** Dieses Projekt wurde archiviert, da ich selbst schon lange nicht mehr daran arbeite.
+
 Überwachung von Temperatur und Luftfeuchtigkeit mit dem Raspberry Pi und dem SHT-21 Sensor.
 
 Die Version 2.0.0 dieses Projekts kann darüber hinaus Messwerte verarbeiten, die von einem ESP8266 mit angeschlossenem DHT22-Sensor übermittelt werden.
